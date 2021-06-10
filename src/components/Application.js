@@ -78,23 +78,30 @@ export default function Application(props) {
   //   avatar: "https://i.imgur.com/LpaY82x.png"
   // }];
 
-  const appointment = appointments.map( appt => {
+  const appointment = appointments.map(appt => {
     return (
       <Appointment key={appt.id} id={appt.id} time={appt.time} interview={appt.interview} />
-    ) 
-  
+    )
+
   })
 
-  const [day, setDay] = useState("");
-  const [days, setDays] = useState([]);
+  const [state, setState] = useState({
+    day: "Monday",
+    days: [],
+    // appointments: {}
+  });
+
+  const setDay = day => setState(prev => ({ ...prev, day }));
+  const setDays = days => setState(prev => ({ ...prev, days }));
+
   // const [interviewer, setInterviewer] = useState("");
 
-  useEffect(()=>{
+  useEffect(() => {
     const day = '/api/days'
     axios.get(day).then((response) => {
       setDays([...response.data])
     })
-  },[]);
+  }, []);
 
   return (
     <main className="layout">
@@ -106,7 +113,11 @@ export default function Application(props) {
         />
         <hr className="sidebar__separator sidebar--centered" />
         <nav className="sidebar__menu">
-          <DayList days={days} day={day} setDay={setDay} />
+          <DayList
+            days={state.days}
+            day={state.day}
+            setDay={setDay}
+          />
         </nav>
         <img
           className="sidebar__lhl sidebar--centered"
