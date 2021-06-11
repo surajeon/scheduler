@@ -1,6 +1,6 @@
 
 
-export default function getAppointmentsForDay(state, day) {
+export const getAppointmentsForDay = (state, day) => {
   // Find the current day
   const currentDay = state.days.find(elm => state.day === elm.name)
   // Get appointments.id array from the day
@@ -15,3 +15,12 @@ export default function getAppointmentsForDay(state, day) {
   return parsedAppointments;
 };
 
+export const getInterview = (state, interview) => {
+  if (interview === null) {
+    return null;
+  }
+  const interviewerID = interview.interviewer;
+  const interviewer = state.interviewers[interviewerID]
+  
+  return {...interview, interviewer}
+}
