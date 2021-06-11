@@ -24,3 +24,19 @@ export const getInterview = (state, interview) => {
   
   return {...interview, interviewer}
 }
+
+export const getInterviewersForDay = (state, day) => {
+  // Find the current day
+  const currentDay = state.days.find(elm => day === elm.name) //state.day
+  console.log(currentDay);
+
+  const currentInterviewers = currentDay ? currentDay.interviewers : [];
+  
+  const parsedInterviewers = [];
+
+  for (let id of currentInterviewers) {
+    parsedInterviewers.push(state.interviewers[id])
+  }
+
+  return parsedInterviewers;
+};
