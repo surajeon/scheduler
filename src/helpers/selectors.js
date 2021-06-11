@@ -2,7 +2,7 @@
 
 export const getAppointmentsForDay = (state, day) => {
   // Find the current day
-  const currentDay = state.days.find(elm => state.day === elm.name)
+  const currentDay = state.days.find(elm => day === elm.name) //state.day
   // Get appointments.id array from the day
   const currentAppointments = currentDay ? currentDay.appointments : [];
   // Create an empty array of full appointments
