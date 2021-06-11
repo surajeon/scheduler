@@ -5,6 +5,7 @@ import InterviewerList from "components/InterviewerList";
 import "./styles.scss"
 
 export default function Form(props) {
+  console.log("props.inttt: ",props.interviewers);
 
   const [name, setName] = useState(props.name || "");
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
@@ -32,7 +33,10 @@ export default function Form(props) {
         */
       />
     </form>
-    <InterviewerList interviewers={props.interviewers} value={interviewer} onChange={(value) => setInterviewer(value)} />
+    <InterviewerList 
+    interviewers={props.interviewers} 
+    value={interviewer} 
+    onChange={(value) => setInterviewer(value)} />
   </section>
   <section className="appointment__card-right">
     <section className="appointment__actions">
