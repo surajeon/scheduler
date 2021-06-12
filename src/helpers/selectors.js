@@ -28,7 +28,6 @@ export const getInterview = (state, interview) => {
 export const getInterviewersForDay = (state, day) => {
   // Find the current day
   const currentDay = state.days.find(elm => day === elm.name) //state.day
-  console.log(currentDay);
 
   const currentInterviewers = currentDay ? currentDay.interviewers : [];
   

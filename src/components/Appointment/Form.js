@@ -5,7 +5,6 @@ import InterviewerList from "components/InterviewerList";
 import "./styles.scss"
 
 export default function Form(props) {
-  console.log("props.inttt: ",props.interviewers);
 
   const [name, setName] = useState(props.name || "");
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
