@@ -58,12 +58,6 @@ export default function Application() {
         appointments
       });
     })
-    .catch(err => {
-      console.log("WORKED");
-      // res
-      //   .status(500)
-      //   .json({ error: err.message });
-    });
   }
 
   const cancelInterview = (id) => {
