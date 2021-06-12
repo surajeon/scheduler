@@ -17,8 +17,8 @@ export default function Appointment(props) {
   const EMPTY = "EMPTY";
   const SHOW = "SHOW";
   const CREATE = "CREATE";
-  const SAVE = "SAVE";
-  const DELETE = "DELETE";
+  const SAVING = "SAVING";
+  const DELETING = "DELETING";
   const CONFIRM = "CONFIRM";
   const EDIT = "EDIT";
   const ERROR_SAVE = "ERROR_SAVE";
@@ -29,7 +29,7 @@ export default function Appointment(props) {
   );
 
   const save = (name, interviewer) => {
-    transition(SAVE);
+    transition(SAVING, true);
     
     const interview = {
       student: name,
@@ -40,21 +40,21 @@ export default function Appointment(props) {
     .then(()=>{  
       transition(SHOW)
     })
-    .catch(() => {
-      transition(ERROR_SAVE)
+    .catch((error) => {
+      transition(ERROR_SAVE, true)
     })
   
   }
 
   const deleteInterview = () => {
-    transition(DELETE)
+    transition(DELETING, true)
 
     props.cancelInterview(props.id)
     .then(()=>{  
       transition(EMPTY)
     })
-    .catch(() => {
-      transition(ERROR_DELETE)
+    .catch((error) => {
+      transition(ERROR_DELETE, true)
     })
   }
 
@@ -69,7 +69,7 @@ export default function Appointment(props) {
           onSave={save}
         />
       )}
-      {mode === SAVE && (<Status message="Saving"/>)}
+      {mode === SAVING && (<Status message="Saving"/>)}
       {mode === SHOW && (
         <Show
           student={props.interview.student}
@@ -87,7 +87,7 @@ export default function Appointment(props) {
         onSave= {save}
         />
       )}
-      {mode === DELETE && (<Status message="Deleting"/>)}
+      {mode === DELETING && (<Status message="Deleting"/>)}
       {mode === CONFIRM && (
         <Confirm 
           message="Are you sure you would like to delete?"

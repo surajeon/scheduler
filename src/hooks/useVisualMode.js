@@ -9,7 +9,8 @@ export default function useVisualMode(initial) {
       back();
     }
     setMode(newMode);
-    setHistory([...history, newMode]);
+    // setHistory([...history, newMode]); // ...history = always initial state + ...
+    setHistory(prev => ([...prev, newMode]));
   };
   const back = () => {
     if (history.length > 1) {
@@ -20,3 +21,5 @@ export default function useVisualMode(initial) {
   };
   return { mode, transition, back };
 }
+
+
