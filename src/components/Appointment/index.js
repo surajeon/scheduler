@@ -11,7 +11,7 @@ import "./styles.scss";
 
 export default function Appointment(props) {
 
-  // console.log("props.int: ", props.interviewers);
+  // console.log("props.int: ", props.interview);
 
   const EMPTY = "EMPTY";
   const SHOW = "SHOW";
@@ -56,7 +56,7 @@ export default function Appointment(props) {
       {mode === CREATE && (
         <Form 
           interviewers={props.interviewers} 
-          onCancel={() => back} 
+          onCancel={back} 
           onSave={save}
         />
       )}
@@ -66,18 +66,26 @@ export default function Appointment(props) {
           student={props.interview.student}
           interviewer={props.interview.interviewer}
           onDelete={() => {transition(CONFIRM)}}
-          onEdit={() => {transition(EDIT)}}
+          onEdit={() =>{transition(EDIT)}}
+        />
+      )}
+      {mode === EDIT && (
+        <Form
+        name={props.interview.student}
+        interviewer={props.interview.interviewer.id}
+        interviewers={props.interviewers}
+        onCancel= {() => back()}
+        onSave= {save}
         />
       )}
       {mode === DELETE && (<Status message="Deleting"/>)}
       {mode === CONFIRM && (
         <Confirm 
           message="Are you sure you would like to delete?"
-          onCancel={() => back}
+          onCancel={back}
           onConfirm={deleteInterview }
         />
       )} 
-      {mode === EDIT && (transition(CREATE))}
     </article>
   );
 }

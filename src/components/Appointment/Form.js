@@ -6,6 +6,8 @@ import "./styles.scss"
 
 export default function Form(props) {
 
+  console.log("props: ", props);
+
   const [name, setName] = useState(props.name || "");
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
   const reset = () => {
@@ -27,6 +29,7 @@ export default function Form(props) {
     <form autoComplete="off" onSubmit={event => event.preventDefault()}>
       <input
         className="appointment__create-input text--semi-bold"
+        name={props.name}
         type="text"
         placeholder="Enter Student Name"
         value={name}
@@ -38,7 +41,8 @@ export default function Form(props) {
     </form>
     <InterviewerList 
     interviewers={props.interviewers} 
-    value={interviewer} 
+    // value={interviewer} 
+    value={interviewer}
     onChange={(value) => setInterviewer(value)} />
   </section>
   <section className="appointment__card-right">
