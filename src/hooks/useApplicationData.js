@@ -20,16 +20,34 @@ export default function useApplicationData() {
       axios.get(promiseInterviewers),
     ])
       .then((all) => {
-
-        // console.log("all",all[1].data);
         setState(prev => ({ ...prev, days: all[0].data, appointments: all[1].data, interviewers: all[2].data }))
       })
   }, [])
 
   const setDay = day => setState(prev => ({ ...prev, day }));
 
-  // const DailyAppointments = getAppointmentsForDay(state, state.day);
+  // const updateSpots = (dayName, days, appointments) => { // state.days.spots
+    
+  //   let currentDay = '';
+  //   let spots = 0;
+    
+  //   for (let day of days) {
+  //     if (day.name === dayName) {
+  //       currentDay = day;
+  //     }
+  //   }
+  
+  //   for (let id of currentDay.appointments) {
+  //     if (appointments[id].interview === null) {
+  //       spots ++;
+  //     }
+  //   }
+  
+  //   return spots;
+  
+  // }
 
+  // booking function
   const bookInterview = (id, interview) => { // id and newInterview obj
 
     const appointment = {
@@ -44,13 +62,24 @@ export default function useApplicationData() {
 
     return axios.put(`/api/appointments/${id}`, { interview })
       .then(() => {
-        setState({
-          ...state,
-          appointments
-        });
+        
+        setState((state) => {
+          const days = state.days.map((day) => {
+            // const spots = updateSpots(day.name, state.days, state.appointments)
+
+            if (state.day === day.name) {
+              day.spots = day.spots -1;
+            }
+            return day;
+          });
+
+          return { ...state, appointments, days: days}
+        })
       })
+  
   }
 
+  // canceling function
   const cancelInterview = (id) => {
     const appointment = {
       ...state.appointments[id],
@@ -64,14 +93,21 @@ export default function useApplicationData() {
 
     return axios.delete(`/api/appointments/${id}`, { interview: null })
       .then(() => {
-        setState({
-          ...state,
-          appointments
+        setState((state) => {
+          const days = state.days.map((day) => {
+            // const spots = updateSpots(day.name, state.days, state.appointments)
+
+            if (state.day === day.name) {
+              day.spots = day.spots + 1;
+            }
+            return day;
+          });
+
+          return { ...state, appointments, days: days}
         });
       })
 
   }
-
 
   return { state, setDay, bookInterview, cancelInterview }
 }
