@@ -18,9 +18,9 @@ import Appointment from "components/Appointment";
   A test that renders a React Component
 */
 describe("Appointment", () => {
-  test("renders without crashing", () => {
-    render(<Appointment />);
-  });
+  // test("renders without crashing", () => {
+  //   render(<Appointment />);
+  // });
   test("calls the function", () => {
     const fn = jest.fn();
     fn();
@@ -36,4 +36,6 @@ describe("Appointment", () => {
     fn(1, 2);
     expect(fn).toHaveReturnedWith(3);
    });
+
+   
 });
