@@ -1,6 +1,8 @@
 import React from "react";
 
-export default function Status(props) {
+// Error message after deleting/saving interview
+
+export default function Error(props) {
 
   return (
     <main className="appointment__card appointment__card--error">

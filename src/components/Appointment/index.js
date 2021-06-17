@@ -12,18 +12,18 @@ import "./styles.scss";
 
 export default function Appointment(props) {
 
-  // console.log("props.int: ", props.interview);
+  // Modes
+  const EMPTY = "EMPTY"; // no appointment, user can see add button
+  const SHOW = "SHOW"; // show interview appointment details
+  const CREATE = "CREATE"; // create form
+  const SAVING = "SAVING"; // status indicator: Saving
+  const DELETING = "DELETING"; // status indicator: Deleting
+  const CONFIRM = "CONFIRM"; // save or cancel message
+  const EDIT = "EDIT"; // show existing interview details before edit it
+  const ERROR_SAVE = "ERROR_SAVE"; // save error message
+  const ERROR_DELETE = "ERROR_DELETE" // delete error message
 
-  const EMPTY = "EMPTY";
-  const SHOW = "SHOW";
-  const CREATE = "CREATE";
-  const SAVING = "SAVING";
-  const DELETING = "DELETING";
-  const CONFIRM = "CONFIRM";
-  const EDIT = "EDIT";
-  const ERROR_SAVE = "ERROR_SAVE";
-  const ERROR_DELETE = "ERROR_DELETE"
-
+  // setting up initial mode state, transition and back
   const { mode, transition, back } = useVisualMode(
     props.interview ? SHOW : EMPTY
   );
@@ -62,7 +62,7 @@ export default function Appointment(props) {
   return (
     <article className="appointment" data-testid="appointment">
       <Header time={props.time} />
-      {mode === EMPTY && (<Empty onAdd={() => transition(CREATE)} />)}
+      {mode === EMPTY && (<Empty onAdd={() => transition(CREATE)} />)} 
       {mode === CREATE && (
         <Form 
           interviewers={props.interviewers} 

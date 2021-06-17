@@ -2,6 +2,8 @@ import React from "react";
 
 import Button from "components/Button";
 
+// comfirming section, whether to save/ delete interview
+
 export default function Confirm(props) {
 
   return (

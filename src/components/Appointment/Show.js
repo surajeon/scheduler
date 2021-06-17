@@ -1,5 +1,7 @@
 import React from "react";
 
+ // interview details form. Displays student name, interviewer with edit/delete button
+
 export default function Show (props) {
 
   return (

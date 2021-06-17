@@ -9,6 +9,8 @@ export default function DayListItem(props) {
     "day-list__item--full": props.spots === 0
   });
 
+  // display remaining spot number
+
   const formatSpots = (props) => {
     if (!props.spots) {
       return "no spots remaining"  

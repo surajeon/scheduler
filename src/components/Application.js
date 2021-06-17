@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 
 import "components/Application.scss";
 import DayList from "components/DayList";
@@ -8,7 +7,7 @@ import useApplicationData from "hooks/useApplicationData"
 import { getAppointmentsForDay, getInterview, getInterviewersForDay } from "../helpers/selectors";
 
 export default function Application(props) {
-  
+  // setup state for current state, setDay, bookInterview, cancelInterview
   const {
     state,
     setDay,
@@ -18,6 +17,7 @@ export default function Application(props) {
 
   const DailyAppointments = getAppointmentsForDay(state, state.day);
 
+  // mapping daily appointments and get specific appointment with details
   const schedule = DailyAppointments.map((appointment) => {
     const interview = getInterview(state, appointment.interview);
     const dailyInterviewers = getInterviewersForDay(state, state.day);

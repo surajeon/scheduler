@@ -4,25 +4,26 @@ import Button from "components/Button";
 import InterviewerList from "components/InterviewerList";
 import "./styles.scss"
 
+// interview booking form
 export default function Form(props) {
 
   const [name, setName] = useState(props.name || "");
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
   const [error, setError] = useState("");
 
+  // name and interviewer reset 
   const reset = () => {
     setName("")
     setInterviewer(null)
   }
+
+  // cancel changes
   const cancel = () => {
     reset()
     props.onCancel()
   }
 
-  // const save = () => {
-  //   props.onSave(name, interviewer)
-  // }
-
+  // when user attempts to save without content, throw validation message
   function validate() {
     if (name === "") {
       setError("Student name cannot be blank");
@@ -40,7 +41,6 @@ export default function Form(props) {
       <input
         className="appointment__create-input text--semi-bold"
         name={props.name}
-        // alt={props.name}
         type="text"
         placeholder="Enter Student Name"
         value={name}

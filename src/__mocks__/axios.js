@@ -1,7 +1,7 @@
-import React from "react";
 import { render, cleanup } from "@testing-library/react";
 afterEach(cleanup);
 
+// mock datas
 
 const fixtures = {
   days: [
@@ -57,6 +57,8 @@ const fixtures = {
     }
   }
 };
+
+// mock api's
 
 export default {
   defaults: { baseURL: "" },

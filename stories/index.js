@@ -154,12 +154,6 @@ storiesOf("InterviewerList", module)
 
 // APPOINTMENT
 
-// const student = [{ name: "Lydia Miller-Jones"}]
-    // const status = [
-    //   {id: 1, message: "Saving"},
-    //   {id: 2, message: "Deleting"}
-    // ]
-
 storiesOf("Appointment", module)
   .addParameters({
     backgrounds: [{ name: "white", value: "#fff", default: true }]

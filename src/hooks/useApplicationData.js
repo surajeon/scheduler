@@ -3,12 +3,13 @@ import axios from "axios";
 
 export default function useApplicationData() {
   const [state, setState] = useState({
-    day: "Monday",
+    day: "Monday", // initial day state "Monday"
     days: [],
     appointments: {},
     interviewers: {}
   });
 
+  // this useEffect hook will fetch data
   useEffect(() => {
     const promiseDays = '/api/days';
     const promiseAppointments = '/api/appointments';
@@ -26,6 +27,7 @@ export default function useApplicationData() {
 
   const setDay = day => setState(prev => ({ ...prev, day }));
 
+  // function for getting current spot
   const getSpotsForDay = (dayObj, appointments) => {
     let spots = 0;
     for (const id of dayObj.appointments) {
@@ -37,6 +39,7 @@ export default function useApplicationData() {
     return spots;
   }
 
+  // function for updating spots after creating/ deleting interview
   const updateSpots = (dayName, days, appointments) => {
     const dayObj = days.find(day => day.name === dayName);
     const spots = getSpotsForDay(dayObj, appointments);
