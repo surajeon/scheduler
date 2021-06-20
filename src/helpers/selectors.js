@@ -11,9 +11,11 @@ export const getAppointmentsForDay = (state, day) => {
   const parsedAppointments = [];
   
   // Push each appointment object
-  for (let id of currentAppointments) {
-    parsedAppointments.push(state.appointments[id])
-  }
+  // for (let id of currentAppointments) {
+  //   parsedAppointments.push(state.appointments[id])
+  // }
+
+  currentAppointments.map(id => parsedAppointments.push(state.appointments[id]))
 
   return parsedAppointments;
 };
@@ -40,9 +42,11 @@ export const getInterviewersForDay = (state, day) => {
   const parsedInterviewers = [];
 
   // Push each interviewer object
-  for (let id of currentInterviewers) {
-    parsedInterviewers.push(state.interviewers[id])
-  }
+  // for (let id of currentInterviewers) {
+  //   parsedInterviewers.push(state.interviewers[id])
+  // }
+
+  currentInterviewers.map(id => parsedInterviewers.push(state.interviewers[id]))
 
   return parsedInterviewers;
 };
